@@ -8,7 +8,7 @@ project_name="creditcardDefault"
 
 list_of_files=[
 
-    "github/workflows/.gitkeep",
+    ".github/workflows/.gitkeep",
     f"src/{project_name}/__init__.py",
     f"src/{project_name}/config/__init__.py",
     f"src/{project_name}/config/configuration.py",
@@ -22,7 +22,8 @@ list_of_files=[
     "requirements.txt",
     "config/config.yaml",
     "params.yaml",
-    "research/trails.ipynb"
+    "research/trails.ipynb",
+    "main.py"
 ]
 
 
