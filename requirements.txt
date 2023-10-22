@@ -1,0 +1,16 @@
+numpy
+pandas
+matplotlib
+seaborn
+scikit-learn
+xgboost
+dill
+gunicorn==21.1.0
+flask
+mlflow==2.2.2
+dvc
+pyYAML
+types-PyYAML
+ensure==1.0.2
+python-box==6.0.2
+#-e .

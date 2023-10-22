@@ -1,0 +1,13 @@
+artifacts_root: artifacts
+
+data_ingestion:
+  root_dir: artifacts/data_ingestion
+  source_url: https://github.com/AvinashPolisetty/datainfo/raw/main/UCI_Credit_Card.zip
+  local_data_file: artifacts/data_ingestion/data.zip
+  unzip_dir: artifacts/data_ingestion 
+
+data_validation:
+  root_dir: artifacts/data_validation
+  unzip_dir: artifacts/data_ingestion/UCI_Credit_Card.csv
+  Status_file: artifacts/data_validation/status.txt
+  
