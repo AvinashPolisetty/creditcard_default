@@ -9,5 +9,5 @@ data_ingestion:
 data_validation:
   root_dir: artifacts/data_validation
   unzip_dir: artifacts/data_ingestion/UCI_Credit_Card.csv
-  Status_file: artifacts/data_validation/status.txt
-  
+  status_file: artifacts/data_validation/status.txt
+
