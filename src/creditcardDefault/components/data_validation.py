@@ -1,8 +1,8 @@
 import os
 import sys
 import pandas as pd
-from src.creditcardDefault.exception import CustomException
-from src.creditcardDefault.entity import DataValidationConfig
+from creditcardDefault.exception import CustomException
+from creditcardDefault.entity import DataValidationConfig
 
 class DataValidation:
     def __init__(self,config:DataValidationConfig):

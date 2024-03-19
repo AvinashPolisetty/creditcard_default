@@ -1,6 +1,7 @@
-from src.creditcardDefault.constants import *
-from src.creditcardDefault.entity import DataIngestionConfig,DataValidationConfig,DataTransformationConfig
-from src.creditcardDefault.utils.common import read_yaml,create_directories
+from creditcardDefault.constants import *
+from creditcardDefault.entity import (DataIngestionConfig,DataValidationConfig,DataTransformationConfig,
+                                                    ModelTrainingConfig)
+from creditcardDefault.utils.common import read_yaml,create_directories
 
 class ConfigurationManager:
     def __init__(self,
@@ -57,3 +58,32 @@ class ConfigurationManager:
 
 
         return data_transformation_config
+
+
+    def get_data_model_train(self)->ModelTrainingConfig:
+        config = self.config.model_training
+        params = self.params.RandomForestClassifier
+        schema = self.schema.target
+
+        create_directories([config.root_dir])
+
+        model_training_config = ModelTrainingConfig(
+            root_dir = config.root_dir,
+            train_data_path= config.train_data_path,
+            test_data_path= config.test_data_path,
+            model_name = config.model_name,
+            target_column = schema.name,
+            n_estimators= params.n_estimators,
+            criterion = params.criterion,
+            max_depth= params.max_depth,
+            min_samples_split=params.min_samples_split
+
+
+        )
+
+        return model_training_config
+
+
+
+
+        
