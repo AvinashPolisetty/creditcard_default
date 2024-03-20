@@ -3,6 +3,8 @@ from src.creditcardDefault.exception import CustomException
 from src.creditcardDefault.pipeline.stage01_data_ingestion import DataIngestionTrainingPipeline
 from src.creditcardDefault.pipeline.stage02_data_validation import DataValidationPipeline
 from src.creditcardDefault.pipeline.stage03_data_transformation import DataTransformationPipeline
+from src.creditcardDefault.pipeline.stage04_model_training import ModelTrainingPipeline
+from src.creditcardDefault.pipeline.stage05_model_evaluation import ModelEvaluationPipeline
 import sys
 
 Stage_name="Data Ingestion"
@@ -38,4 +40,27 @@ except Exception as e:
     raise CustomException(e,sys)
    
    
+
+
+Stage_name="Model Training"
+
+try:
+    logger.info(f">>>>>> {Stage_name} started <<<<<<<<<")
+    data_transform=ModelTrainingPipeline()
+    data_transform.main()
+    logger.info(f">>>>>> stage {Stage_name} completed <<<<<<\n\nx==========x")
+except Exception as e:
+    raise CustomException(e,sys)
+   
     
+
+Stage_name="Model Evaluation"
+
+try:
+    logger.info(f">>>>>> {Stage_name} started <<<<<<<<<")
+    data_transform=ModelEvaluationPipeline()
+    data_transform.main()
+    logger.info(f">>>>>> stage {Stage_name} completed <<<<<<\n\nx==========x")
+except Exception as e:
+    raise CustomException(e,sys)
+   

@@ -6,6 +6,7 @@ from ensure import ensure_annotations
 from box.exceptions import BoxValueError
 from box import ConfigBox
 from src.creditcardDefault import logger
+import json
 from src.creditcardDefault.exception import CustomException
 
 
@@ -36,3 +37,19 @@ def create_directories(path_to_directories:list,verbose=True):
 def get_size(path:Path): 
     size=round(os.path.getsize(path)/1024)
     return  f"~ {size} KB"
+
+
+@ensure_annotations
+def save_json(path:Path,data:dict):
+    with open(path,'w') as file_obj:
+        json.dump(data,file_obj,indent=4)
+    logger.info(f'file saved at {path}')
+
+
+@ensure_annotations 
+def load_json(path:Path):
+    with open(path) as f:
+        data=json.load(f)
+
+    logger.info(f"json file loaded successfully from :{path}")
+    return ConfigBox(data)

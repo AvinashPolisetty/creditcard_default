@@ -1,10 +1,9 @@
 import pandas as pd
 import os
-from src.exception import CustomException
-from src.logger import logging
+from src.creditcardDefault.exception import CustomException
 import joblib
 import sys
-from creditcardDefault.entity import ModelTrainingConfig
+from src.creditcardDefault.entity import ModelTrainingConfig
 
 from sklearn.ensemble import RandomForestClassifier
 
@@ -20,8 +19,8 @@ class ModelTraining:
             train_data=pd.read_csv(self.config.train_data_path)
             test_data=pd.read_csv(self.config.test_data_path)
 
-            X_train = train_data.drop([self.config.target_name],axis=1)
-            X_test = test_data.drop([self.config.target_name],axis=1)
+            X_train = train_data.drop([self.config.target_column],axis=1)
+            X_test = test_data.drop([self.config.target_column],axis=1)
 
             y_train=train_data[[self.config.target_column]]
             y_test=test_data[[self.config.target_column]]
