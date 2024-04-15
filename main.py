@@ -1,10 +1,6 @@
 from src.creditcardDefault import logger
 from src.creditcardDefault.exception import CustomException
-from src.creditcardDefault.pipeline.stage01_data_ingestion import DataIngestionTrainingPipeline
-from src.creditcardDefault.pipeline.stage02_data_validation import DataValidationPipeline
-from src.creditcardDefault.pipeline.stage03_data_transformation import DataTransformationPipeline
-from src.creditcardDefault.pipeline.stage04_model_training import ModelTrainingPipeline
-from src.creditcardDefault.pipeline.stage05_model_evaluation import ModelEvaluationPipeline
+
 import sys
 
 Stage_name="Data Ingestion"

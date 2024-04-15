@@ -1,33 +1,56 @@
 import os
 import sys
-import zipfile
-import urllib.request as request
-from pathlib import Path
-from src.creditcardDefault import logger
 from src.creditcardDefault.exception import CustomException
-from src.creditcardDefault.utils.common import get_size
-from src.creditcardDefault.config.configuration import ConfigurationManager
-from src.creditcardDefault.entity import DataIngestionConfig
+from src.creditcardDefault import logging
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from dataclasses import dataclass
+
+
+
+
+@dataclass
+class DataIngestionConfig:
+    train_data_path: str=os.path.join("artifacts","train.csv")
+    test_data_path: str=os.path.join("artifacts","test.csv")
+    raw_data_path: str=os.path.join("artifacts","data.csv")
+   
 
 
 class DataIngestion:
-    try:
-        def __init__(self,config:DataIngestionConfig):
-            self.config=config
+    def __init__(self):
+        self.ingestion_config=DataIngestionConfig()
 
-        def download_file(self):
-            if not os.path.exists(self.config.local_data_file):
-                filename,headers=request.urlretrieve(url=self.config.source_url,filename=self.config.local_data_file)
-                logger.info(f"{filename} download! with following info in headers")
-            else:
-                logger.info(f"File already exists of size: {get_size(Path(self.config.local_data_file))}")
+    def initiate_data_ingestion(self):
+        logging.info("Entered into the data ingestion method")
+        try:
+            path = r'research\UCI_Credit_Card.csv'
+            df = pd.read_csv(path)
+            logging.info('Read the dataset as dataframe')
 
+            os.makedirs(os.path.dirname(self.ingestion_config.train_data_path), exist_ok=True)
+            logging.info('Make a directory for training data')
 
-        def extract_file(self):
-            unzip_path=self.config.unzip_dir
-            os.makedirs(unzip_path,exist_ok=True)
-            with zipfile.ZipFile(self.config.local_data_file,'r') as zip_ref:
-                zip_ref.extractall(unzip_path)
-                
-    except Exception as e:
-        raise CustomException(e,sys)
+            df.to_csv(self.ingestion_config.raw_data_path,index=False, header=True)
+            logging.info('Save that dataframe into a csv file name as [data.csv] into the artifacts directory')
+
+            logging.info('Train Test Split initiated')
+            train_set,test_set=train_test_split(df,test_size=0.2,random_state=42)
+
+            train_set.to_csv(self.ingestion_config.train_data_path,index=False,header=True)
+            logging.info('Save the train data as a csv file into artifacts folder')
+
+            test_set.to_csv(self.ingestion_config.test_data_path,index=False,header=True)
+            logging.info('Save the test data as csv file into artifacts folder')
+        
+            logging.info('Ingestion of the data has been completed')
+            
+            return(
+                self.ingestion_config.train_data_path,
+                self.ingestion_config.test_data_path
+            )
+        
+        except Exception as e:
+            raise CustomException(e,sys)
+        
+

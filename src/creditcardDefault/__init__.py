@@ -16,4 +16,4 @@ logging.basicConfig(
     level=logging.INFO,
 )
 
-logger=logging.getLogger("creditcardDefaultLogger")
+logging=logging.getLogger("creditcardDefaultLogger")
