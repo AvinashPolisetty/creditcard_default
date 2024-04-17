@@ -8,10 +8,7 @@
 </head>
 <body>
     <div class="login">
-        <!-- <a href="https://github.com/PrajjwalSule21/end-to-end-machine-learning-project" class="top-left-link" target="_blank">GitHub Repository Link</a> -->
-        <a href="https://github.com/PrajjwalSule21/CCDP-ML-Project" class='top-left-link' target="_blank">GitHub Repository Link</a>
-       <!-- <h1>Student Exam Performance Indicator</h1> -->
-   
+        
        <form action="{{ url_for('predict_datapoint')}}" method="post">
         <h1>
             <legend>Credit Card Defaulter Prediction</legend>
@@ -24,7 +21,7 @@
         <div class="mb-3">
             <label class="form-label">Enter your Age</label>
             <input class="form-control" type="number" name="AGE"
-                placeholder="Enter your Age" min='21' max='100' />
+                placeholder="Enter" min='21' max='100' />
         </div>
 
         <div class="mb-3">

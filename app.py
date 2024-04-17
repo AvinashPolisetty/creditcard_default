@@ -41,11 +41,11 @@ def predict_datapoint():
         # print("after Prediction")
         if output == 0:
             msg = 'This Customer will pay the credit card payment on time'
-            return render_template('index.html', results=msg)
+            return render_template('result.html', results=msg)
 
         if output == 1:
             msg = 'This Customer will make a default in his/her payment!!!!'
-            return render_template('index.html', results=msg)
+            return render_template('result.html', results=msg)
 
 
 if __name__ == "__main__":
