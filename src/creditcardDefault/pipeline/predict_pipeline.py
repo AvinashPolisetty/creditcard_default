@@ -1,8 +1,8 @@
 import sys
 import os
 import pandas as pd
-from src.exception import CustomException
-from src.utils import load_object
+from src.creditcardDefault.exception import CustomException
+from src.creditcardDefault.utils.common import load_object
 
 
 class PredictPipeline:
@@ -34,7 +34,7 @@ class CustomData:
         SEX: int,
         EDUCATION: int,
         MARRIAGE: int,
-        PAY_1: int,
+        PAY_0: int,
         PAY_2: int,
         PAY_3: int,
         PAY_4: int,
@@ -53,7 +53,7 @@ class CustomData:
 
         self.MARRIAGE = MARRIAGE
 
-        self.PAY_1 = PAY_1
+        self.PAY_0 = PAY_0
 
         self.PAY_2 = PAY_2
 
@@ -77,7 +77,7 @@ class CustomData:
                 "SEX": [self.SEX],
                 "EDUCATION": [self.EDUCATION],
                 "MARRIAGE": [self.MARRIAGE],
-                "PAY_1": [self.PAY_1],
+                "PAY_0": [self.PAY_0],
                 "PAY_2": [self.PAY_2],
                 "PAY_3": [self.PAY_3],
                 "PAY_4": [self.PAY_4],

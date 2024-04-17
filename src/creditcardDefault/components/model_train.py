@@ -15,9 +15,9 @@ from sklearn.tree import DecisionTreeClassifier
 from xgboost import XGBClassifier
 
 from src.creditcardDefault.exception import CustomException
-from src.creditcardDefault import logger
+from src.creditcardDefault import logging
 
-from src.creditcardDefault.utils import save_object,evaluate_models
+from src.creditcardDefault.utils.common import save_object,evaluate_models
 
 
 @dataclass
@@ -40,56 +40,16 @@ class ModelTrainer:
             )
             models = {
                 "Random Forest": RandomForestClassifier(),
-                "Decision Tree": DecisionTreeClassifier(),
-                "Gradient Boosting": GradientBoostingClassifier(),
-                "Logistic Regression": LogisticRegression(),
-                "XGBClassifier": XGBClassifier(),
-                "CatBoosting Classifier": CatBoostClassifier(verbose=False),
-                "AdaBoost Classifier": AdaBoostClassifier(),
+                
             }
             params={
-                "Decision Tree": {
-                    'criterion':['gini', 'entropy'],
-                    'splitter':['best','random'],
-                    'max_depth' :[1,2,3,4,5,6,7],
-                    'min_samples_split':[10,20,30,40,50,70],
-                    'min_samples_leaf' : [10,20,30,40,50,70],
-                    'max_features':['sqrt','log2', None],
-                    'max_leaf_nodes':[2,4,6,8,10,12]           
-                },
-
+                
                 "Random Forest":{
-                    'criterion':['gini', 'entropy', 'log_loss'],
+                    'criterion':['gini', 'entropy'],
                     'max_features':['sqrt','log2',None],
-                    'n_estimators': [8,16,32,64,128,256],
+                    'n_estimators': [8,16,32],
                     'bootstrap':[True]
                 },
-
-                "Gradient Boosting":{
-                    'loss':['log_loss', 'deviance', 'exponential'],
-                    'learning_rate':[.1,.01,.05,.001],
-                    'subsample':[0.6,0.7,0.75,0.8,0.85,0.9],
-                    'criterion':['squared_error', 'friedman_mse'],
-                    'max_features':['auto','sqrt','log2'],
-                    'n_estimators': [8,16,32,64,128,256]
-                },
-                "Logistic Regression":{},
-
-                "XGBClassifier":{
-                    'learning_rate':[.1,.01,.05,.001],
-                    'n_estimators': [8,16,32,64,128,256],
-                    'max_depth': [10, 120, 230, 340]
-                },
-
-                "CatBoosting Classifier":{
-                    'depth': [6,8,10],
-                    'learning_rate': [0.01, 0.05, 0.1],
-                    'iterations': [30, 50, 100]
-                },
-                "AdaBoost Classifier":{
-                    'learning_rate':[.1,.01,0.5,.001],
-                    'n_estimators': [8,16,32,64,128,256]
-                }
                 
             }
 
