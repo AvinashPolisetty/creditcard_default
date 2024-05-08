@@ -122,7 +122,7 @@ def predict_datapoint():
                 parameters
             )
             print("Document inserted successfully.")
-            # Returning a success message
+            
             if output == 0:
                 msg = 'This Customer will pay the credit card payment on time'
                 return render_template('result.html', results=msg)
